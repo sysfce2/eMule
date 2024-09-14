@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>README - eMule part file access module for VideoLAN Client v0.8.6b</title>
+  <style>
+    h1 { font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: x-large;
+      text-decoration: underline;
+      }
+
+    h2 { font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: large;
+      font-weight: bold;
+      }
+
+    h3 { font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: medium;
+      font-weight: bold;
+      }
+
+    li { font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: small;
+      line-height: 1.4em;
+      }
+
+    p { font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: small;
+      line-height: 1.4em;
+      }
+
+      .style1
+      {
+          text-decoration: underline;
+      }
+
+  </style>
+</head>
+<body>
+
+<h1>README - eMule part file access module for VideoLAN Client v1.0.5</h1>
+
+<h2>Quickstart</h2>
+<ul>
+  <li>Download and install VideoLAN Client (VLC) v1.0.5 from
+    <a href="http://www.videolan.org/vlc/">http://www.videolan.org/vlc/</a>
+  <li>Extract the eMule part file access module package and run the included 
+      setup_partfileplugin.msi <span class="style1"><strong>or</strong></span> copy the
+    <strong>libaccess_partfile_plugin.dll</strong> file into the plugin directory
+    of your VLC installation, e.g. <strong>C:\Program
+    Files\VideoLAN\VLC\plugins</strong>
+  <li>Open the eMule <strong>Options-&gt;Files</strong> dialog and specify
+    VLC as the video player which is to be used for previewing part
+    files:
+      <ul>
+        <li>Specify the full path to the executable of VLC, e.g.
+          <strong>C:\Program Files\VideoLAN\VLC\vlc.exe</strong>
+        <li>Disable the option <strong>Create backup to preview</strong>
+      </ul>
+    <li>Check that the eMule part file access module is properly recognized by
+    VLC. See also: <a style="color: red;" href="#CheckInstall"><strong>IMPORTANT
+    NOTE</strong></a>
+  <li>If you experience lockups/freezes while previewing part files with the
+    eMule part file access module, try setting <strong>Allow only one running instance</strong>
+    in VLC at <strong>Settings-&gt;Preferences-&gt;Advanced</strong>
+    (you have to click the <strong>Advanced options</strong> checkbox
+    in the bottom right of the Preferences window to see this option).
+    This prevents a separate copy of VLC from being run for each file you preview 
+    within eMule; having multiple copies of VLC running at the same time 
+    can cause deadlocks while trying to access hardware that's already
+    being used/locked by a previous VLC instance.
+  <li>When VLC cannot read the index for an AVI file, it offers to 
+    recreate the index. If you don't want to be prompted everytime, open 
+    <strong>Settings-&gt;Preferences-&gt;Input / Codecs-&gt;Demuxers-&gt;AVI</strong>
+    and set <strong>Force index creation</strong> to 
+    <strong><em>Never fix</em></strong>.
+
+</ul>
+
+<h2>Purpose</h2>
+
+<p>The purpose of this access module is to provide VideoLAN Client (VLC) with a media stream
+out of an eMule part file.</p>
+<p>Because an eMule part file usually does not contain a complete media stream,
+VLC has to scan the entire file to find all actually available
+data. The process of scanning the entire file may take a rather long time,
+depending on the actual data available and the file size.</p>
+<p>This access module will evaluate the eMule part.met file of the corresponding
+part file to determine what file data is actually available. With this information,
+the access module is capable of creating a virtual media stream without any gaps
+and will feed this media stream right into VLC, and thus VLC will no longer
+have to scan the entire file, because it will "see" only the actually available data
+in the part file.</p>
+
+<h2>Installation</h2>
+
+<p>R un the included setup_partfileplugin.msi <span class="style1"><strong>or</strong></span> 
+    copy the <strong>libaccess_partfile_plugin.dll</strong> file into the plugin
+directory of your VLC installation. e.g. <strong>C:\Program
+Files\VideoLAN\VLC\plugins</strong></p>
+<p id="CheckInstall"><strong><font color="#ff0000">IMPORTANT
+NOTE:</font></strong> After installing the eMule part file access module or
+after installing a new version of VLC you should always manually check if the
+version of the eMule part file access module matches the version of VLC. This is
+because VLC does not support modules which were developed for a different
+version of VLC than the installed one. For example, if you are using e.g. VLC
+v1.0.5, you cannot use an eMule part file access module which was developed for
+e.g. VLC v1.0.4, and vice versa. In other words, <strong><em>the version of VLC must
+always match the version of the eMule part file access module</em></strong>.</p>
+<p>After copying the module DLL file to the VLC plugins directory, you should
+open the VLC Preferences dialog (<strong>Settings-&gt;Preferences</strong>) and check
+whether there is an <strong>eMule Part File</strong> module listed in the
+<strong>Input / Codecs-&gt;Access Modules</strong> section. If not, your version of VLC does not
+match the version of the eMule part file access module. Either upgrade VLC or
+the eMule part file access module.</p>
+<!--
+<p>It is also possible to learn the VLC version required by the installed eMule
+part file access module. Check the version information stored in the module DLL,
+which can be seen from Windows Explorer's File-&gt;Properties dialog, as shown in
+the following screenshot:</p>
+<img alt="eMule part file access module version information" src="file_version.png">
+-->
+
+<h2>Uninstallation</h2>
+
+<p>&nbsp;Use the &quot;Programs and Features&quot; dialog or remove the <strong>libaccess_partfile_plugin.dll</strong> file from the
+plugin directory of your VLC installation.</p>
+
+<h2>Usage</h2>
+
+<p>Once installed, the part file access module is automatically invoked by VLC
+every time a file is opened. If the extension of the opened file is
+<strong>.part</strong>, the access module tries to find the according
+<strong>.part.met</strong> file and will then handle the part file as described
+above. This means that there is no special action required to use the
+functionality of the access module. Just open any part file you want to view,
+either from eMule (Preview), from within Windows Explorer, or using the Open File
+dialog of VLC.</p>
+<p>Additionally, when using the VLC Open File dialog or the Windows Explorer
+command line, you can specify the part file to be opened with <strong>
+partfile://&lt;path&gt;</strong> to make sure that VLC uses the eMule part file
+access module.</p>
+<p>Example: partfile://D:\eMuleTMP\001.part</p>
+
+<h2>Settings</h2>
+
+<p> The settings dialog for the access module is available within VLC at
+<strong>Settings-&gt;Preferences-&gt;Input / Codecs-&gt;Access Modules-&gt;eMule Part File</strong>.</p>
+<p><img alt="eMule part file access module settings" src="vlc_settings.png"></p>
+
+<h3>Seekable streams</h3>
+<p>Enabling these options will create
+seekable streams, allowing you to use the position slider in VLC to skip around
+in the movie or jump to a specific location.</p>
+<p>The decision if a part.met file is an AVI or an MPEG file is made by checking
+the file extension and other metadata information eMule provides. As this
+information is not always 100% correct it may happen that a seekable stream is
+created although the corresponding option is not enabled (e.g. you are
+downloading a file called "MyVideo.mpg", but the actual format of the
+file is of type AVI). Should this occur, you may want to rename the file to its
+proper extension in eMule's File Details dialog.</p>
+
+<h3>Enable plugin for MPEG part files</h3>
+<p>If this option is enabled, the part file access module will provide a virtual
+stream built from the part file if the part file contains MPEG media. Default =
+enabled.</p>
+
+<h3>Provide a seekable stream for MPEG part files</h3>
+<p>If this option is enabled, the part file access module will provide the
+virtual stream built from the part file as a seekable stream. This option
+has no effect if the "Enable plugin for MPEG part files" option is disabled.
+Default = enabled.</p>
+
+<h3>Enable plugin for AVI part files</h3>
+<p>If this option is enabled, the part file access module will provide a virtual
+stream built from the part file if the part file contains AVI media. Default =
+enabled.</p>
+
+<h3>Provide a seekable stream for AVI part files</h3>
+<p>If this option is enabled, the part file access module will provide the
+virtual stream built from the part file as a seekable stream. This option
+has no effect if the "Enable plugin for AVI part files" option is disabled.
+Default = enabled.</p>
+
+<h3>Enable plugin for other (non MPEG or AVI) part files</h3>
+<p>If this option is enabled, the part file access module will provide a virtual 
+    media stream built from the part file even if the part file does not contain 
+    MPEG or AVI media. Use this option to preview other file types (e.g. OGM, MKV, 
+    ...) Default = disabled.</p>
+
+<h3>Provide a seekable stream for other (non MPEG or AVI) part files</h3>
+<p>If this option is enabled, the part file access module will provide the
+virtual stream built from the part file as a seekable stream. This option
+has no effect if the "Enable plugin for other (non MPEG or AVI) part files"
+option is disabled. Default = disabled.</p>
+
+<h2>File info for eMule part files (ED2K meta data)</h2>
+
+<p>The Stream and Media Info dialog available within VideoLAN Client
+(<strong>View-&gt;Stream and Media Info</strong>) shows the file format
+parameters determined by VLC and some of the eMule/ED2K meta data.</p>
+<p><img alt="VLC Stream and Media Info Dialog" src="vlc_fileinfo.png"></p>
+
+</body></html>

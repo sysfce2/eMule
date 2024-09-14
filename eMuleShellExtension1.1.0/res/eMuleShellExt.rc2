@@ -1,0 +1,48 @@
+//
+// eMuleShellExt.rc2 - resources Microsoft Visual C++ does not edit directly
+//
+
+#ifdef APSTUDIO_INVOKED
+	#error this file is not editable by Microsoft Visual C++
+#endif //APSTUDIO_INVOKED
+
+#include "version.h"
+#include <winver.h>
+
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+	FILEVERSION		VERSION_MJR, VERSION_MIN, VERSION_UPDATE, VERSION_BUILD
+	PRODUCTVERSION	VERSION_MJR, VERSION_MIN, VERSION_UPDATE, VERSION_BUILD
+	FILEFLAGSMASK	VS_FFI_FILEFLAGSMASK
+#ifdef _DEBUG
+	FILEFLAGS		VS_FF_DEBUG | VS_FF_PRIVATEBUILD | VS_FF_PRERELEASE
+#else
+	FILEFLAGS		0x0L // final version
+#endif
+	FILEOS			VOS__WINDOWS32
+	FILETYPE		VFT_DLL
+	FILESUBTYPE		0x0L // not used
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0" // Lang=US English, CharSet=Unicode
+        BEGIN
+            VALUE "CompanyName",		SZ_COMPANY_NAME "\0"
+            VALUE "FileDescription",	SZ_PRODUCT_NAME "\0"
+            VALUE "FileVersion",		SZ_VERSION_NAME "\0"
+            VALUE "InternalName",		"eMuleShellExt\0"
+            VALUE "LegalCopyright",		SZ_COPYRIGHT "\0"
+            VALUE "OriginalFilename",	"eMuleShellExt.dll\0"
+            VALUE "ProductName",		SZ_PRODUCT_NAME "\0"
+            VALUE "ProductVersion",		SZ_VERSION_NAME "\0"
+        END
+    END
+
+    BLOCK "VarFileInfo"
+    BEGIN
+		VALUE "Translation", 0x409, 1200 // Lang=US English, CharSet=Unicode
+    END
+END

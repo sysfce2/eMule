@@ -1,0 +1,73 @@
+HKCU
+{
+	NoRemove Software
+	{
+		NoRemove Classes
+		{
+			NoRemove CLSID
+			{
+				ForceRemove '{5F081689-CE7D-43E7-8B11-DAD99A4A96D6}' = s 'eMule Shell Extension'
+				{					  
+					InprocServer32 = s '%MODULE%'
+					{
+						val ThreadingModel = s 'Both'
+					}
+				}
+			}
+			
+			NoRemove .met = s 'metfile'
+			{
+			}
+			
+			NoRemove .part = s 'partfile'
+			{
+			}
+
+			NoRemove metfile
+			{
+				ForceRemove DefaultIcon = s '%MODULE%,-201'
+				{
+				}
+			}
+			NoRemove partfile
+			{
+				ForceRemove DefaultIcon = s '%MODULE%,-202'
+				{
+				}
+			}
+			NoRemove SystemFileAssociations
+			{
+				NoRemove .met
+				{
+					val Details			 = s 'prop:DocTitle;Artist;Album;Duration;Bitrate;Write;Size'
+					val InfoTip          = s 'prop:DocTitle;Artist;Album;Duration;Bitrate;Write;Size'
+					val TileInfo		 = s 'prop:DocTitle;Size'
+					val ExtendedTileInfo = s 'prop:DocTitle;*Artist;*Album;*Duration;*System.Video.Compression;*Bitrate;Write;Size'
+					val FullDetails      = s 'prop:System.PropGroup.Media;DocTitle;*Artist;*Album;*Duration;*System.Video.Compression;*Bitrate;System.PropGroup.FileSystem;System.ItemNameDisplay;System.ItemType;System.ItemFolderPathDisplay;System.Size;System.DateCreated;System.DateModified;System.FileAttributes;*System.OfflineAvailability;*System.OfflineStatus;*System.SharedWith;*System.FileOwner;*System.ComputerName'
+					val PreviewDetails   = s 'prop:DocTitle;*Artist;*Album;*Duration;*System.Video.Compression;*Bitrate;Write;Size'
+					NoRemove ShellEx
+					{
+						ForceRemove PropertyHandler = s '{5F081689-CE7D-43E7-8B11-DAD99A4A96D6}'
+						{
+						}
+					}
+				}
+				NoRemove .part
+				{
+					val Details			 = s 'prop:DocTitle;Artist;Album;Duration;Bitrate;Write;Size'
+					val InfoTip          = s 'prop:DocTitle;Artist;Album;Duration;Bitrate;Write;Size'
+					val TileInfo		 = s 'prop:DocTitle;Size'
+					val ExtendedTileInfo = s 'prop:DocTitle;*Artist;*Album;*Duration;*System.Video.Compression;*Bitrate;Write;Size'
+					val FullDetails      = s 'prop:System.PropGroup.Media;DocTitle;*Artist;*Album;*Duration;*System.Video.Compression;*Bitrate;System.PropGroup.FileSystem;System.ItemNameDisplay;System.ItemType;System.ItemFolderPathDisplay;System.Size;System.DateCreated;System.DateModified;System.FileAttributes;*System.OfflineAvailability;*System.OfflineStatus;*System.SharedWith;*System.FileOwner;*System.ComputerName'
+					val PreviewDetails   = s 'prop:DocTitle;*Artist;*Album;*Duration;*System.Video.Compression;*Bitrate;Write;Size'
+					NoRemove ShellEx
+					{
+						ForceRemove PropertyHandler = s '{5F081689-CE7D-43E7-8B11-DAD99A4A96D6}'
+						{
+						}
+					}
+				}
+			}
+		}
+	}
+}

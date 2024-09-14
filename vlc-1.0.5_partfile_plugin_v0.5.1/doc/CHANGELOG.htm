@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>CHANGELOG - eMule part file access module for VideoLAN Client</title>
+  <style>
+    h1 { font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: x-large;
+      text-decoration: underline;
+      }
+
+    h2 { font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: large;
+      font-weight: bold;
+      }
+
+    h3 { font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: medium;
+      font-weight: bold;
+      }
+
+    li { font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: small;
+      line-height: 1.4em;
+      }
+
+    p { font-family: Verdana,Arial,Helvetica,sans-serif;
+      font-size: small;
+      line-height: 1.4em;
+      }
+
+  </style>
+</head>
+<body>
+
+<h1>CHANGELOG - eMule part file access module for VideoLAN Client</h1>
+
+<h2>Changes by eMule Project</h2>
+
+<h3>27-April-2010</h3>
+<p>New 0.5.1 version, compatible with VideoLAN Client v1.0.5.</p>
+
+    <h2>Changes by Cybermutant:</h2>
+
+<h3>24-April-2007</h3>
+<p>New 0.3.7 version, compatible with VideoLAN Client v0.8.6b.</p>
+
+<h3>11-Mar-2007</h3>
+<p>New 0.3.6 version, compatible with VideoLAN Client v0.8.6a.</p>
+<ul>
+  <li>Removed parts of code that weren't needed for part file access
+  <li>Fixed reading of UTF8 encoded file names from part.met files
+  <li>Added support for previewing 4GB+ part files
+  <li>Changed the gap removal logic (still needs work)
+</ul>
+
+<h3>09-May-2006</h3>
+<p>New 0.2.5 version, compatible with VideoLAN Client v0.8.5.</p>
+
+<h3>28-Nov-2005</h3>
+<p>New 0.2.3 version, compatible with VideoLAN Client v0.8.4.</p>
+
+<h3>28-Jun-2005</h3>
+<p>New 0.2.2 version, compatible with VideoLAN Client v0.8.2.</p>
+<ul>
+  <li>Removed the option to handle all files opened by VLC.
+</ul>
+
+<h3>08-Feb-2005</h3>
+<p>New 0.2.0 version, compatible with VideoLAN Client v0.8.1.</p>
+<ul>
+  <li>Many changes in the code to comply with the new VLC API structure first introduced in v0.8.0.
+  <li>Tried to keep the source code as similar as possible to the original VLC file access module.
+  <li>Left all platform specific code intact in the sources, in the hopes that 
+      it might be possible to compile and use the plugin under other VLC supported 
+      operating systems that also have eDonkey/eMule clients (such as Linux/MacOS).
+  <li>The plugin is now built using the Cygwin environment under Windows as 
+      recommended by the VideoLAN developers. Refer to the build instructions 
+      within the source package for details.
+</ul>
+
+<h2>Changes by Bluecow (eMule Project):</h2>
+
+<h3>25-May-2004</h3>
+<ul>
+  <li>Updated to VLC v0.7.2.
+</ul>
+
+<h3>13-Mar-2004</h3>
+<ul>
+  <li>Several code changes for easier porting and merging with original VLC file access module.
+</ul>
+
+<h3>03-Mar-2004</h3>
+<ul>
+  <li>Added: Updated to VLC v0.7.1.
+</ul>
+
+<h3>03-Feb-2004</h3>
+<ul>
+  <li>Added: Updated source code for compiling with VLC v0.7.0 (disabled by default).
+  <li>Added: All meta data strings are converted to UTF8 to be properly shown in the File Info dialog.
+  <li>Added: More meta data (Artist, Album, Title, Bitrate, Length, Codec) is shown in the File Info dialog.
+</ul>
+
+<h3>27-Aug-2003</h3>
+<ul>
+  <li>Added: Updated to VLC v0.6.2.
+  <li>Added: Exception handler to ensue that due to a crash while reading a part.met file, the part.met file always gets closed again.
+  <li>Added: More detailed version info resource for making sure which version of VideoLAN Client has to be used with the version of the access module.
+</ul>
+
+<h3>14-Aug-2003</h3>
+<ul>
+  <li>Added: More options to specify which part files have to be handled.
+</ul>
+
+<h3>13-Aug-2003</h3>
+<ul>
+  <li>Fix: VLC seems to not display strings which contain characters with a value &gt;=0x80. Workaround added which replaces all characters &gt;=80 with a '.'
+</ul>
+
+<h3>08-Aug-2003</h3>
+<ul>
+  <li>Added: ED2K meta data is added as separate information category to the media stream and shown in the File Info dialog.
+  <li>Added: The "Provide Seekable Stream" option is selectable within the Settings dialog page of the partfile access module. (All/AVI/MPEG)
+  <li>Added: Recognition of the input file type via the appropriate ED2K meta data tag or via the file extension.
+  <li>Fix: Bug in read function; small (&lt;64KB) available data parts were not handled correctly.
+  <li>Change: Tweaked code for stream positioning.
+</ul>
+
+<h3>07-Aug-2003</h3>
+<ul>
+  <li>Added: Support for seekable streams. Though there seem to be some trouble with AVI files. MPEG files work well.
+</ul>
+
+<h3>06-Aug-2003</h3>
+<ul>
+  <li>Added: Option to handle not only the <strong>partfile://</strong> protocol, but also the <strong>file://</strong> protocol to get around a bug in original VLC file access module or core(?).
+  <li>Added: Support for <strong>partfile://</strong> and <strong>file://</strong> protocol.
+  <li>Cleaned up a lot of code.
+</ul>
+
+<h3>05-Aug-2003</h3>
+<ul>
+  <li>Initial version. Started to use the original file access module from VideoLAN Client v0.6.1.
+</ul>
+
+</body></html>
